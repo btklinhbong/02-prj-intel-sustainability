@@ -96,10 +96,14 @@ section > div {
 	position: relative;
 	/* A bold top border ties each card to the brand */
 	border-top: 6px solid var(--intel-blue);
+	/* Subtle border for consistent card edges */
+	border: 1px solid #d9e7f5;
 	/* Subtle entrance animation for a polished feel */
 	animation: slideFade 0.7s ease both;
 	/* Snap each card during horizontal scroll */
 	scroll-snap-align: start;
+	/* Transition makes hover feel smooth */
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Timeline dot on each card */
@@ -140,7 +144,18 @@ section h3 {
 section p {
 	color: var(--text-muted);
 	font-size: 0.98rem;
+	/* Start hidden so hover can reveal details */
+	opacity: 0;
+	max-height: 0;
+	overflow: hidden;
+	/* Smooth reveal for text on hover */
+	transition: opacity 0.25s ease, max-height 0.25s ease;
 }
+
+/* Show extra details when the card is hovered */
+section > div:hover p {
+	opacity: 1;
+	max-height: 200px;
 
 /* Footer hint text */
 body > p {
