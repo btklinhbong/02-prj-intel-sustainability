@@ -1,1 +1,195 @@
-/* Add your CSS here */
+/* Basic reset so all elements start with the same spacing */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Color palette for a clean Intel-inspired look */
+:root {
+	--intel-blue: #0071c5;
+	--intel-dark: #0b1b2b;
+	--soft-blue: #e6f3ff;
+	--card-white: #ffffff;
+	--text-dark: #1a2b3b;
+	--text-muted: #4b5c6b;
+}
+
+/* Page-wide defaults: font, background, and text color */ 
+body {
+	font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+	/* Soft sky-like gradient to feel clean and modern */
+	background: linear-gradient(180deg, #f7fbff 0%, #eef6ff 60%, #ffffff 100%);
+	color: var(--text-dark);
+	line-height: 1.6;
+}
+
+/* Header / Hero styling */
+header {
+	/* Intel-blue gradient adds brand identity and contrast */
+	background: linear-gradient(135deg, var(--intel-blue), #4aa3ff);
+	color: #ffffff;
+	text-align: center;
+	padding: 48px 16px 56px;
+}
+
+/* Logo sizing for a clear, balanced header */
+header img {
+	width: 140px;
+	max-width: 80%;
+	margin-bottom: 16px;
+}
+
+/* Big headline to anchor the hero section */
+header h1 {
+	font-size: 2.2rem;
+	margin-bottom: 12px; 
+	letter-spacing: 0.5px;
+}
+
+/* Subheading text with slightly softer white for readability */
+header p {
+	max-width: 720px;
+	margin: 0 auto;
+	font-size: 1rem;
+	color: #eaf5ff;
+}
+
+/* Timeline section: Flexbox makes cards line up horizontally */
+section {
+	max-width: 980px;
+	margin: 40px auto 24px;
+	padding: 16px 16px 32px;
+	position: relative;
+	/* Flexbox puts cards in a row on large screens */
+	display: flex;
+	gap: 20px;
+	/* Horizontal scrolling for long timelines */
+	overflow-x: auto;
+	/* Snap helps each card stop nicely while scrolling */
+	scroll-snap-type: x mandatory;
+}
+
+/* Horizontal timeline line that runs behind the cards */
+section::before {
+	content: "";
+	position: absolute;
+	left: 16px;
+	right: 16px;
+	top: 32px;
+	height: 4px;
+	background: var(--intel-blue);
+	border-radius: 2px;
+}
+
+/* Timeline cards */
+section > div {
+	/* Fixed card width helps the horizontal scroll feel consistent */
+	flex: 0 0 280px;
+	background: var(--card-white);
+	margin: 0 0 16px 0;
+	/* Extra top padding makes space for the timeline dot */
+	padding: 40px 20px 20px;
+	border-radius: 12px;
+	/* Soft shadow to lift the card from the background */
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+	position: relative;
+	/* A bold top border ties each card to the brand */
+	border-top: 6px solid var(--intel-blue);
+	/* Subtle entrance animation for a polished feel */
+	animation: slideFade 0.7s ease both;
+	/* Snap each card during horizontal scroll */
+	scroll-snap-align: start;
+}
+
+/* Timeline dot on each card */
+section > div::before {
+	content: "";
+	position: absolute;
+	left: 20px;
+	top: 18px;
+	width: 16px;
+	height: 16px;
+	/* Dark center with a light ring for contrast */
+	background: var(--intel-dark);
+	border: 3px solid var(--soft-blue);
+	border-radius: 50%;
+}
+
+/* Hover effect gives quick feedback on desktop */
+section > div:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Year heading */
+section h2 {
+	font-size: 1.5rem;
+	color: var(--intel-blue);
+	margin-bottom: 6px;
+}
+
+/* Milestone title */
+section h3 {
+	font-size: 1.1rem;
+	color: var(--text-dark);
+	margin-bottom: 8px;
+}
+
+/* Milestone description */
+section p {
+	color: var(--text-muted);
+	font-size: 0.98rem;
+}
+
+/* Footer hint text */
+body > p {
+	text-align: center;
+	padding: 8px 16px 32px;
+	color: var(--text-muted);
+	font-size: 0.95rem;
+}
+
+/* Simple load animation for cards */
+@keyframes slideFade {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Mobile-friendly tweaks for smaller phones */
+@media (max-width: 600px) {
+	header h1 {
+		font-size: 1.8rem;
+	}
+
+	section::before {
+		left: 16px;
+		right: 16px;
+	}
+
+	section > div {
+		/* Let cards grow full width on small screens */
+		flex: 1 1 auto;
+	}
+}
+
+/* Stack cards vertically on small screens */
+@media (max-width: 800px) {
+	section {
+		/* Column layout is easier to read on narrow screens */
+		flex-direction: column;
+		overflow-x: visible;
+	}
+
+	section::before {
+		/* Thinner line keeps the layout light on mobile */
+		top: 12px;
+		height: 3px;
+	}
+}
