@@ -323,3 +323,19 @@ section div:hover p {
     font-size: 13px;
   }
 }
+
+/* ============================================
+   INSTRUCTION TEXT
+   ============================================ */
+
+/* Styling for instruction text at bottom of page */
+.instruction-text {
+  text-align: center;
+  /* Center the text */
+  font-size: 12px;
+  /* Make text smaller */
+  color: #666;
+  /* Gray color for subtle appearance */
+  padding: 20px;
+  margin: 0;
+}
